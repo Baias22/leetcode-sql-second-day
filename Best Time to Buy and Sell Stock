@@ -1,0 +1,103 @@
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minPrice = prices[0];
+        int maxProfit = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            }
+
+            int profit = prices[i] - minPrice;
+
+            if (profit > maxProfit) {
+                maxProfit = profit;
+            }
+        }
+
+        return maxProfit;
+    }
+}
+
+
+
+Explanation
+
+The goal of this problem is to find the maximum profit from buying and selling a stock.
+
+I can buy the stock only once and sell it later.
+
+First, I create two variables:
+
+int minPrice = prices[0];
+int maxProfit = 0;
+
+minPrice stores the lowest price I have seen so far.
+
+maxProfit stores the biggest profit I have found so far.
+
+Then I use a for loop:
+
+for (int i = 1; i < prices.length; i++)
+
+I start from index 1 because the first price is already stored in minPrice.
+
+Inside the loop, I check if the current price is lower than my minimum price:
+
+if (prices[i] < minPrice) {
+    minPrice = prices[i];
+}
+
+If it is lower, I update minPrice.
+
+Then I calculate the profit:
+
+int profit = prices[i] - minPrice;
+
+This means I buy at the lowest price and sell at the current price.
+
+For example, if the minimum price is 2 and the current price is 5:
+
+5 - 2 = 3
+
+So the profit is 3.
+
+Then I check if this profit is bigger than my previous maximum profit:
+
+if (profit > maxProfit) {
+    maxProfit = profit;
+}
+
+If it is bigger, I update maxProfit.
+
+At the end, I return:
+
+return maxProfit;
+
+So the algorithm goes through the array only once. It always remembers the lowest price so far and checks the profit we can get by selling today.
+
+For example:
+
+prices = [7, 1, 5, 3, 6, 4]
+
+The lowest price becomes 1.
+
+Then:
+
+5 - 1 = 4
+3 - 1 = 2
+6 - 1 = 5
+4 - 1 = 3
+
+The maximum profit is 5.
+
+So the answer is 5.
