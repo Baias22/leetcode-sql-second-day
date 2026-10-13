@@ -1,0 +1,36 @@
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+
+Output: true
+
+Example 2:
+
+Input: s = "rat", t = "car"
+
+Output: false
+
+
+
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        HashMap <Character, Integer> map1 = new HashMap<>();
+        HashMap <Character, Integer> map2 = new HashMap<>();
+        char[] charArray = s.toCharArray();
+          char[] charArray1 = t.toCharArray();
+        for(int i=0;i<charArray.length; i++){
+map1.put(charArray[i], map1.getOrDefault(charArray[i],0)+1 );
+        }
+
+         for(int i=0;i<charArray1.length; i++){
+map2.put(charArray1[i], map2.getOrDefault(charArray1[i],0)+1 );
+        }
+
+        return map1.equals(map2);
+    }
+}
