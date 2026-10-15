@@ -1,0 +1,22 @@
+Input: nums = [555,901,482,1771]
+Output: 1 
+Explanation: 
+Only 1771 contains an even number of digits.
+
+
+
+class Solution {
+    public int findNumbers(int[] nums) {
+     int count = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int digits = String.valueOf(nums[i]).length();
+
+            if (digits % 2 == 0) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
