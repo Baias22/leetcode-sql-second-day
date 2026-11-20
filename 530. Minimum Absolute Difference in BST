@@ -1,0 +1,36 @@
+Given the root of a Binary Search Tree (BST), return the minimum absolute difference between the values of any two different nodes in the tree.
+
+
+
+Input: root = [4,2,6,1,3]
+Output: 1
+
+
+
+class Solution {
+    public int getMinimumDifference(TreeNode root) {
+       List<Integer> list= new ArrayList <>();
+       
+       int min=Integer.MAX_VALUE;;
+
+
+
+      find(root,list);
+        for(int i=1;i<list.size();i++){
+           int current_min= list.get(i)-list.get(i-1);
+                min=Math.min(min,current_min   );
+            }
+            return min;
+        }
+        
+    
+    private void find (TreeNode root, List<Integer> list){
+        if(root==null){
+            return ;
+        }
+         find(root.left, list);
+       list.add(root.val);
+       find(root.right, list);
+        
+    }
+}
